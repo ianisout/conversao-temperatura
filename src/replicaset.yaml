@@ -1,0 +1,24 @@
+# MANIFEST
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myreplicaset
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web
+          image: ianisout/web-page:blue
+          ports:
+            - containerPort: 80
+
+# $ kubectl apply -f replicaset.yaml <- better
+# $ kubectl scale replicaset <name> --replicas 10
